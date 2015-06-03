@@ -1,7 +1,8 @@
 class Question < ActiveRecord::Base
 	
-	validates :title, presence: true
-	validates :body, presence: true
+	has_many :answers, dependent: :destroy
 
-	has_many :answers
+	validates :title,  length: { in: 5..140 }
+	validates :body,   length: { in: 10..1000 }
+
 end
