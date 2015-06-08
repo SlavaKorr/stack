@@ -9,5 +9,9 @@ FactoryGirl.define do
 
   factory :new_answer, class: "Answer" do
 	body "MyNEWbodyNEW"
+
+	factory :only_answer, class: "Answer" do
+	body "MyNEWbodyNEW"
+  end
   end
 end
