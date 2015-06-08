@@ -3,11 +3,12 @@ require 'rails_helper'
 describe QuestionsController do
 
 	let(:question) {create(:question)}
+
 describe 'GET index' do	
 	let(:questions) {create_list(:question, 2)}
     before { get :index }
 	
-	it 'show all questios on index' do
+	it 'show all questions on index' do
 	expect(assigns(:questions)).to match_array(@questions)
 	end
 

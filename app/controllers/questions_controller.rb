@@ -4,6 +4,7 @@ class QuestionsController < ApplicationController
 
 	def index
 		@questions = Question.all
+
 	end
 	
 	def show
@@ -28,7 +29,7 @@ class QuestionsController < ApplicationController
 
 	def update
 	 if @question.update(question_params) 
-		redirect_to @question
+		redirect_to question
 	 else
 	 	render :edit
 	 end
