@@ -1,1 +1,21 @@
-s
+p
+	-if user_signed_in?
+		p = current_user.email 
+		p = link_to 'Sign out',  destroy_user_session_path, method: :delete 	
+	-else
+		= link_to 'Sign in', new_user_session_path
+
+p
+	= link_to 'Ask question', new_question_path
+
+p 
+	strong Questions
+
+p
+	-@questions.each do |q|
+		p =q.title
+		p =q.body
+		=> link_to 'View answers', question_path(q)
+		- if current_user == q.user and user_signed_in?
+			= link_to 'Delete question', question_path(q), method: :delete 	
+
