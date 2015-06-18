@@ -4,6 +4,7 @@ require 'rails_helper'
 
   let(:question) {create(:question)}
 
+
     describe 'GET index' do 
       let(:questions) {create_list(:question, 2)}
       before { get :index }
@@ -64,9 +65,7 @@ require 'rails_helper'
   describe 'POST #create' do
 
     sign_in_user
-    let(:question) { create(:question, user: @user) }
-    let(:invalid_question) { create(:invalid_question, user: @user) }
-
+   
     context 'create question with valid attributes can only authorised user' do
 
       it 'create question and save in database' do
@@ -76,7 +75,12 @@ require 'rails_helper'
       it 'redirect to a new question' do
         post :create, question: attributes_for(:question)
         expect(response).to redirect_to question_path(assigns(:question))
-        expect(question.user.id).to eq @user.id
+      end
+
+
+      it  'compare users_id with new question users_id' do
+        post :create, question: attributes_for(:question)
+        expect(assigns(question.user.id)).to eq @user_id
       end
     end
 

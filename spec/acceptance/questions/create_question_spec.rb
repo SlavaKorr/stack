@@ -11,6 +11,7 @@ feature 'Create question' do
     fill_in 'Body', with:'bodybodybodybody'
     click_on 'Create'
     expect(page).to have_content 'bodybodybodybody'
+    expect(page).to have_content 'titletitletitle'
   end
 
   scenario 'Non-authenticated user can not write question' do

@@ -24,9 +24,8 @@ class QuestionsController < ApplicationController
 
   def create
       @question = Question.new(question_params)
-      @question.user = current_user
-    if
-      @question.save
+      @question.user_id = current_user.id
+    if @question.save
       flash[:notice] = 'Your question created!'
       redirect_to @question
     else
@@ -36,8 +35,7 @@ class QuestionsController < ApplicationController
 
 
   def update
-    if 
-      @question.update(question_params)
+    if @question.update(question_params)
       flash[:notice] = "Your question update!"
       redirect_to @question
     else
@@ -66,7 +64,7 @@ class QuestionsController < ApplicationController
   end
 
   def author
-    redirect_to root_url, notice: "You are not an author" unless @question.user == current_user
+    redirect_to root_url, notice: "You are not an author" unless @question.user_id == current_user.id
   end
 
 end

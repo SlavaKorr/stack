@@ -11,8 +11,8 @@ class AnswersController < ApplicationController
 
   def create
       @answer = @question.answers.new(answer_params)
-    if @answer.user = current_user
-      @answer.save
+      @answer.user_id = current_user.id
+    if @answer.save
       flash[:notice] = 'Your answer created!'
       redirect_to @answer.question
     else 
@@ -23,7 +23,7 @@ class AnswersController < ApplicationController
 
   def destroy
       @answer = Answer.find(params[:id])
-    if @answer.user == current_user
+    if @answer.user_id == current_user.id
       @answer.destroy
       flash[:notice] = 'Your answer deleted!'
       redirect_to @answer.question

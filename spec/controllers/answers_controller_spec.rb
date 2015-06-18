@@ -1,10 +1,11 @@
 require 'rails_helper'
 
   describe AnswersController do
-    let(:question) { create(:question) }
-    let(:answer)   { create(:answer, question: question)}
-    let(:invalid_answer)   { create(:invalid_answer, question: question)}
     let(:user){ create(:user) }
+    let(:question) { create(:question, user: user) }
+    let(:answer)   { create(:answer, question: question, user: user)}
+   # let(:invalid_answer)   { create(:invalid_answer, question: question)}
+   
 
   describe 'GET #new' do
 
@@ -22,17 +23,23 @@ require 'rails_helper'
 
 
   describe 'POST #create' do
-
-    sign_in_user
-
+ sign_in_user
+  
     context 'Sucsesful create answer able only authenticate user' do
       it 'create answer and save in db' do
-        expect {post :create, question_id: question, answer: attributes_for(:answer)}.to change(question.answers, :count).by(1)
+        expect {post :create, question_id: question, answer: attributes_for(:answer)}.to change(Answer, :count).by(1)
       end
+
+      it 'promice that new answer have user_id equal current_user_id' do 
+        post :create, question_id: question, answer: attributes_for(:answer)
+        expect(assigns(:answer).user_id).to eq (subject.current_user.id)
+      end
+
+
 
       it 'Redirect to page with new answer' do
         post :create, question_id: question, answer: attributes_for(:answer)
-        expect(response).to redirect_to(assigns(:question))
+        expect(response).to redirect_to question_path(assigns(:question))
       end
     end
 

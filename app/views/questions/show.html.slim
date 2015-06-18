@@ -3,7 +3,7 @@ p
     p = current_user.email 
     p = link_to 'Sign out',  destroy_user_session_path, method: :delete   
   -else
-  p = link_to 'Sign in', new_user_session_path
+    p = link_to 'Sign in', new_user_session_path
   p = link_to 'View questions', questions_path
 p
   =link_to 'Write answer', new_question_answer_path(@question)
@@ -21,8 +21,8 @@ p
   strong Answers:
 p
   -@question.answers.each do |answer|
-    p = answer.body
-    - if current_user == answer.user and user_signed_in?
+    li = answer.body
+    - if user_signed_in? && current_user.id == answer.user_id 
       p = link_to "Remove answer", answer, method: :delete
 
   
