@@ -1,17 +1,18 @@
 FactoryGirl.define do
+  
   factory :answer do
-	body "MyTextttttt"
+    body "MyTextAnswer"
+    user
   end
 
   factory :invalid_answer, class: "Answer" do
-	body "M"
+    body "M"
+    user
   end
 
   factory :new_answer, class: "Answer" do
-	body "MyNEWbodyNEW"
+    body "MyNEWbodyNEW"
+    user
+  end
 
-	factory :only_answer, class: "Answer" do
-	body "MyNEWbodyNEW"
-  end
-  end
 end
