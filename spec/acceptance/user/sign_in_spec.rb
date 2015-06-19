@@ -25,7 +25,6 @@ feature 'User sign in' do
     expect(page).to have_content 'Signed in successfully.'
     expect(current_path).to eq root_path
     click_on 'Sign out'
-    save_and_open_page
     expect(page).to have_content 'Signed out successfully.'
   end
 
