@@ -15,7 +15,6 @@ class AnswersController < ApplicationController
       @answer = Answer.find(params[:id])
     if @answer.user_id == current_user.id
       @answer.destroy
-      flash[:notice] = 'Your answer deleted!'
       redirect_to @answer.question
     else
       redirect_to root_url, notice: "You are not an author" 

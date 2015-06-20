@@ -6,8 +6,7 @@ p
     p = link_to 'Sign in', new_user_session_path
   p = link_to 'View questions', questions_path
 p
-  =link_to 'Write answer', new_question_answer_path(@question)
-p  
+
   strong Title:
 p
   =@question.title 
@@ -17,14 +16,18 @@ p
   =@question.body
 p
   =link_to 'Delete question', question_path(@question), method: :delete
-p  
+ 
+hr
 
 .answers
-   = render 'answers'
+  - @question.answers.each do |answer|
+     = render partial: 'answer', locals: {answer: answer}
+
 
 = form_for [@question, @answer], remote: true do |f|
-  = f.label :body, "Your answer"
+  p = f.label :body, "Your answer"
   p = f.text_area :body
-  = f.submit "Send answer"
+  p = f.submit "Send answer"
+
 
   
