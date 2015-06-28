@@ -4,30 +4,31 @@ p
     p = link_to 'Sign out',  destroy_user_session_path, method: :delete   
   -else
     p = link_to 'Sign in', new_user_session_path
-  p = link_to 'View questions', questions_path
-p
 
-  strong Title:
-p
-  =@question.title 
-p
+p = link_to 'View questions', questions_path
+
+strong Title:
+
+p =@question.title 
+
+p 
   strong Question:
-p
-  =@question.body
-p
-  =link_to 'Delete question', question_path(@question), method: :delete
+
+p =>@question.body
+
+
+p =link_to 'Delete question', question_path(@question), method: :delete
  
 hr
+  = form_for [@question, @answer], remote: true do |f|
+    p = f.label :body, "Your answer"
+    p = f.text_area :body
+    p = f.submit "Send answer"
+    .answer-info
 
 .answers
-  - @question.answers.each do |answer|
-     = render partial: 'answer', locals: {answer: answer}
-
-
-= form_for [@question, @answer], remote: true do |f|
-  p = f.label :body, "Your answer"
-  p = f.text_area :body
-  p = f.submit "Send answer"
+  = render @question.answers
+    
 
 
   

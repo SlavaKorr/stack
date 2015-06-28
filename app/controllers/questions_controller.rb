@@ -19,7 +19,7 @@ class QuestionsController < ApplicationController
   end
 
 
-  def edit
+  def edit  
   end
 
 
@@ -36,12 +36,7 @@ class QuestionsController < ApplicationController
 
 
   def update
-    if @question.update(question_params)
-      flash[:notice] = "Your question update!"
-      redirect_to @question
-    else
-      render :edit
-    end
+      @question.update(question_params)
   end
 
 
