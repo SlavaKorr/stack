@@ -7,50 +7,35 @@ require 'rails_helper'
    # let(:invalid_answer)   { create(:invalid_answer, question: question)}
    
 
-  describe 'GET #new' do
-
-    sign_in_user
-    before { get :new, question_id: question }
-
-    it 'create new answer' do
-      expect(assigns(:answer)).to be_a_new(Answer)
-    end
-
-    it 'render template new' do
-      expect(response).to render_template :new
-    end
-  end
-
-
   describe 'POST #create' do
  sign_in_user
   
     context 'Sucsesful create answer able only authenticate user' do
       it 'create answer and save in db' do
-        expect {post :create, question_id: question, answer: attributes_for(:answer)}.to change(Answer, :count).by(1)
+        expect {post :create, question_id: question, answer: attributes_for(:answer), format: :js}.to change(question.answers, :count).by(1)
       end
 
       it 'promice that new answer have user_id equal current_user_id' do 
-        post :create, question_id: question, answer: attributes_for(:answer)
+        post :create, question_id: question, answer: attributes_for(:answer), format: :js
         expect(assigns(:answer).user_id).to eq (subject.current_user.id)
       end
 
 
 
       it 'Redirect to page with new answer' do
-        post :create, question_id: question, answer: attributes_for(:answer)
-        expect(response).to redirect_to question_path(assigns(:question))
+        post :create, question_id: question, answer: attributes_for(:answer), format: :js
+         expect(response).to render_template :create 
       end
     end
 
     context 'UNsucsessful create' do
       it 'does not save with only_answer' do
-        expect {post :create, question_id: question, answer: attributes_for(:invalid_answer)}.to_not change(Answer, :count)
+        expect {post :create, question_id: question, answer: attributes_for(:invalid_answer), format: :js}.to_not change(Answer, :count)
     end
 
       it 'render template with invalid answer' do     
-        post :create, question_id: question, answer: attributes_for(:invalid_answer) 
-        expect(response).to render_template :new   
+        post :create, question_id: question, answer: attributes_for(:invalid_answer), format: :js
+        expect(response).to render_template :create 
       end
     end
   end
