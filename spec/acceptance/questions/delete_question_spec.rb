@@ -1,4 +1,4 @@
-require 'rails_helper'
+require 'acceptance/acceptance_helper.rb'
 
 feature 'Delete question' do
 
@@ -9,14 +9,14 @@ feature 'Delete question' do
   scenario 'Authenticate user can delete their questions' do
     sign_in(user)
     visit questions_path
-    click_on 'Delete question'
+    click_on 'Delete'
     expect(page).to_not have_content 'My String'
   end
 
   scenario 'Authenticate user can not delete another question' do
     sign_in(another_user) 
     visit questions_path
-    expect(page).to_not have_content 'Delete question'
+    expect(page).to_not have_content 'Delete'
   end
 
 end

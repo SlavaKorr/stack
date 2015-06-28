@@ -5,7 +5,7 @@ require 'rails_helper'
   let(:question) {create(:question)}
 
 
-    describe 'GET index' do 
+    describe 'GET #index' do 
       let(:questions) {create_list(:question, 2)}
       before { get :index }
     
@@ -103,12 +103,12 @@ require 'rails_helper'
 
       let(:question) { create(:question, user: @user) }
       it 'update question with valid attributes' do
-        patch :update, id: question, question: attributes_for(:question)
+        patch :update, id: question, question: attributes_for(:question), format: :js
         expect(assigns(:question)).to eq question 
       end
 
       it 'exactly update question' do
-        patch :update, id: question, question: {title: 'new title', body: 'new bodynew body'}
+        patch :update, id: question, question: {title: 'new title', body: 'new bodynew body'}, format: :js
         question.reload
         expect(question.title).to eq 'new title'
         expect(question.body).to eq 'new bodynew body' 
@@ -116,21 +116,22 @@ require 'rails_helper'
       end
 
       it 'redirect to updated question' do 
-        patch :update, id: question, question: attributes_for(:question)
-        expect(response).to redirect_to question
+        patch :update, id: question, question: attributes_for(:question), format: :js
+        expect(response).to render_template :update
       end
     end
 
     context 'invalid attributes' do
       it 'try update question' do
-        patch :update, id: question, question: {title: 'nil', body: 'nil'}
+        patch :update, id: question, question: {title: 'nil', body: 'nil'}, format: :js
         question.reload
         expect(question.title).to eq 'MyString'
         expect(question.body).to eq 'MyTextttttt' 
       end
 
       it 'render temlate edit with invalid attributes' do
-        expect(response).to render_template :edit
+         patch :update, id: question, question: {title: 'nil', body: 'nil'}, format: :js
+        expect(response).to render_template :update
       end
     end 
   end

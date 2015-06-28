@@ -1,4 +1,4 @@
-require 'rails_helper'
+require 'acceptance/acceptance_helper.rb'
 
 feature 'anyone can read all questions and all answers' do
   given!(:questions) {create_list(:question, 5)}

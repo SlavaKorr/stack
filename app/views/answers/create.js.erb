@@ -1,2 +1,9 @@
-$('.answers').append('<%= j render partial: 'questions/answer', locals: {answer: @answer} %>');
-$('#answer_body').val('')
+<% if @answer.errors.present? %>
+    <% @answer.errors.full_messages.each do |message| %>
+      $('.answer-info').html('<%= j message %>');
+    <% end %>
+<% else %>
+$('.answer-info').html('<%= j 'Answer created!' %>');
+$('.answers').append('<%= j render partial: 'answer', locals: {answer: @answer} %>');
+$('textarea, #create_answer').val('');
+<% end %>
