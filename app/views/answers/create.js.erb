@@ -4,6 +4,6 @@
     <% end %>
 <% else %>
 $('.answer-info').html('<%= j 'Answer created!' %>');
-$('.answers').append('<%= j render partial: 'answer', locals: {answer: @answer} %>');
+$('.answers').append('<%= j render @answer, locals: {answer: @answer} %>');
 $('textarea, #create_answer').val('');
 <% end %>

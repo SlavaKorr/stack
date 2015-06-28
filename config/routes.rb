@@ -4,9 +4,7 @@ Rails.application.routes.draw do
   root to: 'questions#index'
   resources :questions do
     resources :answers, shallow: true do
-      member do 
-        patch 'best'  
-      end
+      patch :best, on: :member  
     end
   end
 end

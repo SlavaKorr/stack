@@ -4,6 +4,6 @@
     <% end %>
 <% else %>
 $('.question-info').html('<%= j 'Question created!' %>');
-$('.questions').append('<%= j render partial: 'question', locals: {question: @question} %>');
+$('.questions').append('<%= j render @question, locals: {question: @question} %>');
 $('#answer_body').val('');
 <% end %>

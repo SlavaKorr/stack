@@ -3,7 +3,7 @@
         $('.question-errors').html('<%= j message %>');
     <% end %>
 <% else %>
-    $('#question-id-<%= @question.id %>').replaceWith("<%= j render partial: 'question',  locals: {question: @question} %>");
+    $('#question-id-<%= @question.id %>').replaceWith("<%= j render @question, locals: {question: @question} %>");
     $('.edit-question-link').click(function(e) {
         e.preventDefault();
         $(this).hide();

@@ -13,8 +13,7 @@ p
 
 p
 .questions
-  -@questions.each do |question|
-    = render partial: 'question', locals: {question: question}
+  =render @questions
   
 
 
