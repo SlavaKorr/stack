@@ -16,6 +16,13 @@ p
 
 p =>@question.body
 
+p Attachments
+
+- @question.attachments.each do |a|
+  ul
+    li = link_to a.file.filename, a.file.url
+ 
+
 
 p =link_to 'Delete question', question_path(@question), method: :delete
  
@@ -23,6 +30,9 @@ hr
   = form_for [@question, @answer], remote: true do |f|
     p = f.label :body, "Your answer"
     p = f.text_area :body
+    p = f.fields_for :attachments do |a|
+      p = a.label :file
+      p = a.file_field :file
     p = f.submit "Send answer"
     .answer-info
 
