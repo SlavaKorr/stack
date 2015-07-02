@@ -28,6 +28,7 @@ gem 'devise'
 gem 'bootstrap-sass'
 gem 'carrierwave'
 gem 'remotipart'
+gem 'cocoon'
 
 group :test, :development do 
 	gem 'rspec-rails'

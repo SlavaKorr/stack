@@ -17,4 +17,16 @@
  @import "bootstrap-sprockets";
  @import "bootstrap";
 
+.index{
+  background:"gray";
+}
+
+body { background-color: lightgray; }
+
+.main {background-color: white;
+padding-left:20px;
+width:50%;
+margin: 0 auto;
+}
+
 
