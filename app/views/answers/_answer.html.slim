@@ -1,8 +1,18 @@
-   - if answer.persisted? 
+   - if answer.persisted?
+    hr 
      .answer id = "answer-#{answer.id}" class=('best-answer' if answer.best_answer)
         - if answer.best_answer
           p.h4 This answer is best
         p = answer.body
+        p Attachments
+        ul
+        - answer.attachments.each do |a|
+          li id="attachment-id-#{a.id}"
+            => link_to a.file.identifier, a.file.url
+            - if user_signed_in? && current_user.id == @answer.user_id
+              =link_to 'Delete file', attachment_path(a), method: :delete,
+                  data: {confirm: "Delete file?"}, remote: true
+
         - if user_signed_in? && current_user.id == answer.question.user_id
           p = link_to "Mark as best", best_answer_path(answer), method: :patch, remote: true
         - if user_signed_in? && current_user.id == answer.user_id 
