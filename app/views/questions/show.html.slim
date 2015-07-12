@@ -6,6 +6,9 @@ p
     p = link_to 'Sign in', new_user_session_path
 
 p = link_to 'View questions', questions_path
+hr
+= render partial: 'votes/vote', locals: {votable: @question, type: "question"}
+br
 
 strong Title:
 

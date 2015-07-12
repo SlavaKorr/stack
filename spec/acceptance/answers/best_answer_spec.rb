@@ -12,7 +12,6 @@ feature "Best answer" do
     sign_in(another_user)
     visit questions_path
     click_on 'View answers'
-    save_and_open_page
     expect(page).to_not have_content "Mark as best"
   end
 

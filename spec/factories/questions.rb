@@ -5,6 +5,12 @@ FactoryGirl.define do
     user
   end
 
+factory :second_question, class: "Question"  do
+    title "Second_question"
+    body "MyTexttttttSecond"
+    user
+  end
+
   factory :invalid_question, class: "Question" do
     title nil
     body nil
