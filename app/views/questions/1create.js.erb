@@ -4,6 +4,7 @@
     <% end %>
 <% else %>
 $('.question-info').html('<%= j 'Question created!' %>');
-$('.questions').append('<%= j render @question, locals: {question: @question} %>');
-$('#answer_body').val('');
+  <% publish_to "/questions/#{@question.id}/answers" do %>
+  $('.questions').append('<%= j render @question, locals: {question: @question} %>');
+  <% end %>
 <% end %>

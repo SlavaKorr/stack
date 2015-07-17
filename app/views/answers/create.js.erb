@@ -3,7 +3,8 @@
       $('.answer-info').html('<%= j message %>');
     <% end %>
 <% else %>
-$('.answer-info').html('<%= j 'Answer created!' %>');
-$('.answers').append('<%= j render @answer, locals: {answer: @answer} %>');
-$('textarea, #create_answer').val('');
+  $('.new_answer #answer_body').val('');
+<% publish_to "/questions/#{@question.id}/answers" do %>
+  $('.answers').append('<%= j render @answer, locals: {answer: @answer} %>');
+  <% end %>
 <% end %>

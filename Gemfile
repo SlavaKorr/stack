@@ -35,6 +35,8 @@ group :test, :development do
 	gem 'factory_girl_rails'
   gem 'database_cleaner'
   gem 'capybara-webkit'
+  gem 'private_pub'
+  gem 'thin'
 end
 
 group :test do

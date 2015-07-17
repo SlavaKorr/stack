@@ -41,8 +41,11 @@ hr
     p = f.submit "Send answer"
     .answer-info
 
-.answers
+.answers data={question_id: "#{@question.id}"}
   = render @question.answers
+
+= subscribe_to "/questions/#{@question.id}/answers"  
+
     
 
 

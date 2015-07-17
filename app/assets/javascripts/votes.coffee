@@ -2,15 +2,20 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
+
 $ ->
    $('.vote-up, .vote-down').bind 'ajax:success', (e, data, status, xhr) ->
-     $('#' + 'vote-' + data.votable_type.toLowerCase() + '-' + data.votable_id + ' .rating').html(data.count_votes)
-     $('#' + 'vote-' + data.votable_type.toLowerCase() + '-' + data.votable_id + ' .vote-up').hide()
-     $('#' + 'vote-' + data.votable_type.toLowerCase() + '-' + data.votable_id + ' .vote-down').hide()
+   
+     div_vote = '#' + 'vote-' + data.votable_type.toLowerCase() + '-' + data.votable_id
+
+     $(div_vote + " .rating").html(data.count_votes)
+     $(div_vote + " .vote-up").hide()
+     $(div_vote + " .vote-down").hide()
    
    $('.vote-cancel').bind 'ajax:success', (e, data, status, xhr) ->
-     $('#' + 'vote-' + data.votable_type.toLowerCase() + '-' + data.votable_id + ' .rating').html(data.count_votes)
-     $('#' + 'vote-' + data.votable_type.toLowerCase() + '-' + data.votable_id + ' .vote-up').show()
-     $('#' + 'vote-' + data.votable_type.toLowerCase() + '-' + data.votable_id + ' .vote-down').show()
 
+     div_vote = '#' + 'vote-' + data.votable_type.toLowerCase() + '-' + data.votable_id
 
+     $(div_vote + " .rating").html(data.count_votes)
+     $(div_vote + " .vote-up").show()
+     $(div_vote + " .vote-down").show()
