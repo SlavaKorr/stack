@@ -46,8 +46,23 @@ end
   def create
       @answer = @question.answers.build(answer_params)
       @answer.user_id = current_user.id
-      @answer.save
+
+      respond_to do |format|
+
+    if @answer.save
+      format.js do 
+       # PrivatePub.publish_to "/questions/#{@question.id}/answers", answer: @answer.to_json
+       # render nothing: true
+        end
+      else
+        format.json { render json: @answer.errors.full_messages, status: :unprocessable_entity }
+        format.js
+      end
+    end
   end
+
+
+
 
   def update
       @answer = Answer.find(params[:id])

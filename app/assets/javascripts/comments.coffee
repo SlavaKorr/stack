@@ -1,16 +1,11 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
-<<<<<<< HEAD
-=======
+
 
 $ ->
-  $('.edit-answer-link').click (e) ->
+  $('.create-comment-link').click (e) ->
     e.preventDefault();
     $(this).hide();
-    answer_id = $(this).data('answerId')
-    $('form#edit-answer-' + answer_id).show()
-<<<<<<< HEAD
->>>>>>> 9cbdb60464406cd6c424b81b269c633daf750abd
-=======
->>>>>>> lesson-10
+    commentable_id = $(this).data('commentableId')
+    $('form#create-comment-' + commentable_id).show()

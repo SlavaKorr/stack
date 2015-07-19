@@ -1,5 +1,6 @@
 class Answer < ActiveRecord::Base
 
+  include Commentable
   include Attachable
   include Votable
 
