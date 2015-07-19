@@ -11,7 +11,6 @@ $ ->
 
 
   PrivatePub.subscribe '/questions', (data, channel) ->
-    console.log(data)
     question = $.parseJSON(data['question'])
     $('.questions').append(
       '<hr>' +
