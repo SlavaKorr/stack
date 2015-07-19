@@ -1,1 +1,24 @@
+<<<<<<< HEAD
 s
+=======
+
+p
+  -if user_signed_in?
+    p = current_user.email 
+    p = link_to 'Sign out',  destroy_user_session_path, method: :delete   
+  -else
+      = link_to 'Sign in', new_user_session_path
+
+p
+  = link_to 'Ask question', new_question_path
+
+p 
+  strong Questions
+
+p
+.questions
+  =render @questions
+  
+
+
+>>>>>>> 9cbdb60464406cd6c424b81b269c633daf750abd

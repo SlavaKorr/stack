@@ -1,1 +1,19 @@
+<<<<<<< HEAD
 new
+=======
+= form_for @question do |f|
+  h2 Create your question
+  p 
+    = f.label :title
+    p = f.text_field :title
+  br
+    = f.label :body
+    p = f.text_area :body, rows: 3, cols: 25
+  p
+
+    = f.fields_for :attachments do |attach|
+      p = render partial: 'attachments/a_fields', locals: {f: attach}
+      p = link_to_add_association 'Add file', f, :attachments, partial: 'attachments/a_fields'
+    
+  = f.submit 'Create', class: 'btn btn-default'
+>>>>>>> 9cbdb60464406cd6c424b81b269c633daf750abd

@@ -1,0 +1,16 @@
+div id="question-id-#{question.id}"
+    hr
+      => 'Rating'
+      = question.count_votes 
+    br
+    p = question.title
+    p = question.body
+    p = link_to 'View answers', question_path(question)
+    - if user_signed_in? && current_user.id == question.user_id 
+      p= link_to 'Delete', question, method: :delete
+      p= link_to 'Edit','', class: 'edit-question-link', data: { question_id: question.id }
+      p 
+        = form_for question, method: "patch", remote: true, html: { id: "edit-question-#{question.id}"} do |f|
+           = f.label :body, "Edit_your_question"
+           = f.text_area :body
+           = f.submit 'Save'

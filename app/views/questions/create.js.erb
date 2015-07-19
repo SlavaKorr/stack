@@ -1,0 +1,9 @@
+<% if @answer.errors.present? %>
+    <% @answer.errors.full_messages.each do |message| %>
+      $('.answer-info').html('<%= j message %>');
+    <% end %>
+<% else %>
+$('.question-info').html('<%= j 'Question created!' %>');
+$('.questions').append('<%= j render @question, locals: {question: @question} %>');
+$('#answer_body').val('');
+<% end %>

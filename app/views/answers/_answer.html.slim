@@ -1,0 +1,29 @@
+ - if answer.persisted?
+  hr 
+   .answer id = "answer-#{answer.id}" class=('best-answer' if answer.best_answer)
+      = render partial: 'votes/vote', locals: {votable: answer, type: "answer"}
+      - if answer.best_answer
+        p.h4 This answer is best
+        br
+
+      p = answer.body
+      p Attachments
+      ul
+      - answer.attachments.each do |a|
+        li id="attachment-id-#{a.id}"
+          => link_to a.file.identifier, a.file.url
+          - if user_signed_in? && current_user.id == @answer.user_id
+            =link_to 'Delete file', attachment_path(a), method: :delete,
+                data: {confirm: "Delete file?"}, remote: true
+
+      - if user_signed_in? && current_user.id == answer.question.user_id
+        p = link_to "Mark as best", best_answer_path(answer), method: :patch, remote: true
+      - if user_signed_in? && current_user.id == answer.user_id 
+        p = link_to 'Edit','', class: 'edit-answer-link', data: { answer_id: answer.id }
+        p = link_to 'Delete', answer, method: :delete, data: { confirm: 'Delete answer?' }, remote: true  
+        p 
+          = form_for answer, method: "patch", remote: true, html: { id: "edit-answer-#{answer.id}"} do |f|
+            = f.label :body, "Edit_your_answer"
+            = f.text_area :body
+            = f.submit 'Save'
+      
