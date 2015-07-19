@@ -38,7 +38,7 @@ class QuestionsController < ApplicationController
 
 
   def update
-      @question.update(question_params)
+     @question.update(question_params) 
   end
 
 

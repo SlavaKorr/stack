@@ -10,7 +10,6 @@ feature 'Create question' do
     fill_in 'Title', with:'titletitletitle'
     fill_in 'Body', with:'bodybodybodybody'
     click_on 'Create'
-    save_and_open_page
     expect(page).to have_content 'bodybodybodybody'
     expect(page).to have_content 'titletitletitle'
   end

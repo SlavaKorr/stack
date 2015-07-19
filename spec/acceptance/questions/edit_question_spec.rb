@@ -11,13 +11,13 @@ feature 'Editing question' do
 
     scenario 'User sees Edit link', js: true do
       within '.questions' do
-        save_and_open_page
+        
         expect(page).to have_link "Edit"
       end
     end
 
 
-    scenario 'User can edit your answer', js: true do 
+    scenario 'User can edit your question', js: true do 
       click_on 'Edit'
       within '.questions' do
       fill_in 'Edit_your_question', with: 'It is my updated question'

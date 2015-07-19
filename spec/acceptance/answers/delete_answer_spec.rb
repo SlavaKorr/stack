@@ -21,7 +21,6 @@ given(:another_user) { create(:user) }
     visit questions_path
     click_on 'View answers'
     expect(page).to have_content 'MyTextAnswer'
-    save_and_open_page
      within '.answers' do
     expect(page).to_not have_content 'Delete'
     end
