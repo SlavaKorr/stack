@@ -26,11 +26,6 @@ require 'rails_helper'
         expect(assigns(:question)).to eq question 
       end
 
-      it "Creates new attachment for new answer" do 
-        expect(assigns(:answer).attachments.first).to be_a_new(Attachment)
-      end
-
-
       it 'render template question' do
         expect(response).to render_template :show
       end
@@ -44,10 +39,6 @@ require 'rails_helper'
 
       it 'create new question' do
         expect(assigns(:question)).to be_a_new(Question)
-      end
-
-      it "Creates new attachment for new question" do 
-        expect(assigns(:question).attachments.first).to be_a_new(Attachment)
       end
 
       it 'render template new' do
