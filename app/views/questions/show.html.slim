@@ -53,7 +53,7 @@ hr
   = form_for [@question, @answer], remote: true do |f|
     p = f.label :body, "Your answer"
     p = f.text_area :body
-    p = f.fields_for :attachments do |attach|
+    p = f.fields_for :attachments, @answer.attachments.build do |attach|
       p = render partial: 'attachments/a_fields', locals: {f: attach}
       p = link_to_add_association 'Add file', f, :attachments, partial: 'attachments/a_fields'
     

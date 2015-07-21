@@ -42,44 +42,27 @@ end
 =======
   before_action :authenticate_user!
   before_action :load_question, only: [:create, :update, :best]
+  before_action :load_answer, only: [:update, :destroy, :best]
+  before_action :load_question_answer, only: [:update, :best]
+
+  respond_to :js
 
   def create
-      @answer = @question.answers.build(answer_params)
-      @answer.user_id = current_user.id
-
-      respond_to do |format|
-
-    if @answer.save
-      format.js do 
-       # PrivatePub.publish_to "/questions/#{@question.id}/answers", answer: @answer.to_json
-       # render nothing: true
-        end
-      else
-        format.json { render json: @answer.errors.full_messages, status: :unprocessable_entity }
-        format.js
-      end
-    end
+    respond_with(@answer = @question.answers.create(answer_params.merge(user: current_user)))
   end
 
-
-
-
   def update
-      @answer = Answer.find(params[:id])
-      @question = @answer.question
       @answer.update(answer_params) if @answer.user_id == current_user.id 
+      respond_with @answer
   end
 
 
   def destroy
-      @answer = Answer.find(params[:id])
-      @answer.destroy if @answer.user_id == current_user.id
+      respond_with(@answer.destroy) if @answer.user_id == current_user.id
   end
 
   def best
-      @answer = Answer.find(params[:id])
-      @question = @answer.question
-      @answer.best if current_user.id == @answer.question.user_id
+     respond_with(@answer.best) if current_user.id == @answer.question.user_id
   end
 
 
@@ -89,6 +72,13 @@ end
     @question = Question.find_by(id: params[:question_id])
   end
 
+  def load_answer
+    @answer = Answer.find(params[:id])
+  end
+
+  def load_question_answer
+    @question = @answer.question
+  end
 
   def answer_params
     params.require(:answer).permit(:body, attachments_attributes: [:file])
