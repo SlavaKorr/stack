@@ -39,6 +39,9 @@ group :test, :development do
   gem 'capybara-webkit'
   gem 'private_pub'
   gem 'thin'
+  gem 'omniauth'
+  gem 'omniauth-facebook'
+  gem 'omniauth-twitter'
 end
 
 group :test do
