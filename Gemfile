@@ -41,7 +41,8 @@ group :test, :development do
   gem 'thin'
   gem 'omniauth'
   gem 'omniauth-facebook'
-  gem 'omniauth-twitter'
+  gem 'omniauth-twitter', :github => 'arunagw/omniauth-twitter'
+  gem 'pry-byebug'
 end
 
 group :test do

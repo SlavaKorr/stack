@@ -2,6 +2,11 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' }
   root to: 'questions#index'
+  devise_scope :user do
+    post 'input_email', to: 'omniauth_callbacks#input_email'
+  end
+
+
 
   resources :attachments, only: [:destroy]
 

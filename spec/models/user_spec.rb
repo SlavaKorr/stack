@@ -71,5 +71,17 @@ RSpec.describe User do
         expect(authorization.uid).to eq auth.uid
       end
     end
+
+    context "without email in omniauth." do
+      let(:auth) { OmniAuth::AuthHash.new(provider: 'twitter', uid: '123456', info: { email: nil }) }
+
+      it "should return User.new if email in oauth hash nil and if user hasn't in authorization" do 
+        expect(User.find_for_oauth(auth)). to be_a(User)
+      end
+
+      it "couldn't create in authorization without email" do 
+          expect {User.find_for_oauth(auth)}. to_not change(user.authorizations, :count)
+      end
+    end
   end
 end
