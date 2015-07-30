@@ -13,7 +13,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def input_email
     @user = User.generate_user(email_params[:email])
-    @user.authorizations.create(provider: session[:auth_provider], uid: session[:auth_uid])
+    @user.authorizations.create(provider: session['device.auth_provider'], uid: session['device.auth_uid'])
     sign_in_and_redirect @user, event: :authentication
     set_flash_message(:notice, :success, kind: 'Twitter') if is_navigational_format?
   end
@@ -28,8 +28,8 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       set_flash_message(:notice, :success, kind: action_name.capitalize) if is_navigational_format?
     else
       render 'omniauth_callback/input_email'
-      session[:auth_provider] = auth.provider
-      session[:auth_uid] = auth.uid
+      session['device.auth_provider'] = auth.provider
+      session['device.auth_uid'] = auth.uid
     end
   end
 
