@@ -1,11 +1,20 @@
 Rails.application.routes.draw do
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   resources :questions do
     resources :answers, only: [:index, :new, :create, :destroy]
 =======
   devise_for :users
+=======
+  devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' }
+>>>>>>> lesson-12
   root to: 'questions#index'
+  devise_scope :user do
+    post 'input_email', to: 'omniauth_callbacks#input_email'
+  end
+
+
 
   resources :attachments, only: [:destroy]
 
