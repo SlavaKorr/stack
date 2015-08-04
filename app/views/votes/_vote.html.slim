@@ -3,7 +3,7 @@
   span.rating= votable.count_votes
   br 
 
-  - if user_signed_in? && current_user.id != votable.user_id
+  -if can?(:up, Vote)
     => 'Vote for this'
     => "#{type}"
     => link_to '+', polymorphic_path([:up, votable, :votes]),

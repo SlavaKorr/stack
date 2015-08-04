@@ -39,6 +39,7 @@
   def create_authorization(auth)
     authorizations.create(provider: auth.provider, uid: auth.uid)
   end
+
 end
 
 

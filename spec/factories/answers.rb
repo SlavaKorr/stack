@@ -2,6 +2,7 @@ FactoryGirl.define do
   
   factory :answer do
     body "MyTextAnswer"
+    question
     user
   end
 

@@ -19,8 +19,6 @@ require 'rails_helper'
         expect(assigns(:answer).user_id).to eq (subject.current_user.id)
       end
 
-
-
       it 'Redirect to page with new answer' do
         post :create, question_id: question, answer: attributes_for(:answer), format: :js
         expect(response).to render_template :create 
@@ -95,7 +93,7 @@ require 'rails_helper'
 
       it "redirect to root path" do
         delete :destroy, id: answer, format: :js
-        expect(response).to render_template :destroy
+        expect(response).to be_forbidden
       end
     end
   end
