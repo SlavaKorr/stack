@@ -4,9 +4,8 @@ require 'acceptance/acceptance_helper.rb'
     scenario "facebook" do 
       visit root_path
       click_on "Sign in"
-      #binding.pry
-      click_on "Sign in with Facebook"
       mock_auth_hash_facebook
+      click_on "Sign in with Facebook"
       expect(page). to have_content "Successfully authenticated from Facebook account."
     end
   end
@@ -15,8 +14,8 @@ require 'acceptance/acceptance_helper.rb'
     scenario "twitter" do 
       visit root_path
       click_on "Sign in"
-      click_on "Sign in with Twitter"
       mock_auth_hash_twitter
+      click_on "Sign in with Twitter"
       fill_in "Email", with: 'test@twitter.com'
       click_on "Send"
       expect(page). to have_content "Successfully authenticated from Twitter account."

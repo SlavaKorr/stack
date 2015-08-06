@@ -5,6 +5,7 @@ FactoryGirl.define do
 	body "MyTextttttt"
 =======
     body "MyTextAnswer"
+    question
     user
   end
 

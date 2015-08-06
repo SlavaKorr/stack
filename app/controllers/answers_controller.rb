@@ -47,22 +47,23 @@ end
 
   respond_to :js
 
+  authorize_resource
+
   def create
     respond_with(@answer = @question.answers.create(answer_params.merge(user: current_user)))
   end
 
   def update
-      @answer.update(answer_params) if @answer.user_id == current_user.id 
+      @answer.update(answer_params) 
       respond_with @answer
   end
 
-
   def destroy
-      respond_with(@answer.destroy) if @answer.user_id == current_user.id
+      respond_with(@answer.destroy)
   end
 
   def best
-     respond_with(@answer.best) if current_user.id == @answer.question.user_id
+     respond_with(@answer.best)
   end
 
 

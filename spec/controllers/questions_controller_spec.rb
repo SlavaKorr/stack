@@ -231,9 +231,11 @@ end
   describe 'PATCH #update' do
       
     sign_in_user
+
+    let(:question) { create(:question, user: @user) }
+
     context 'sucessful edit' do
 
-      let(:question) { create(:question, user: @user) }
       it 'update question with valid attributes' do
         patch :update, id: question, question: attributes_for(:question), format: :js
         expect(assigns(:question)).to eq question 
@@ -263,7 +265,7 @@ end
 
       it 'render temlate edit with invalid attributes' do
          patch :update, id: question, question: {title: 'nil', body: 'nil'}, format: :js
-        expect(response).to render_template :update
+         expect(response).to render_template :update
       end
     end 
   end

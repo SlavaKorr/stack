@@ -4,7 +4,7 @@ div id="question-id-#{question.id}"
     p = question.title
     p = question.body
     p = link_to 'View answers', question_path(question)
-    - if user_signed_in? && current_user.id == question.user_id 
+    - if can?(:crud, question)
       p= link_to 'Delete', question, method: :delete
       p= link_to 'Edit','', class: 'edit-question-link', data: { question_id: question.id }
       p 

@@ -30,6 +30,7 @@ gem 'carrierwave'
 gem 'remotipart'
 gem 'cocoon'
 gem 'responders'
+gem 'cancancan'
 
 
 group :test, :development do 

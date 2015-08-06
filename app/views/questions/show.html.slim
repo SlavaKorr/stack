@@ -31,7 +31,7 @@ p = link_to 'View questions', questions_path
     - @question.attachments.each do |a|
       li id="attachment-id-#{a.id}"
         => link_to a.file.identifier, a.file.url
-        - if user_signed_in? && current_user.id == @question.user_id
+        - if can?(:destroy, a)
           =link_to 'Delete file', attachment_path(a), method: :delete, data: {confirm: "Delete file?"}, remote: true
 
   p =link_to 'Delete question', question_path(@question), method: :delete
