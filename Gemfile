@@ -44,12 +44,14 @@ group :test, :development do
   gem 'omniauth-facebook'
   gem 'omniauth-twitter', :github => 'arunagw/omniauth-twitter'
   gem 'pry-byebug'
+  gem 'doorkeeper'
 end
 
 group :test do
 	gem 'shoulda-matchers'
   gem 'capybara'
   gem 'launchy'
+  gem 'json_spec'
 end
 
 # Use ActiveModel has_secure_password
