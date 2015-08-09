@@ -68,8 +68,9 @@
 
         %w( id email created_at updated_at ).each do |attr|
           it "contains #{attr}" do 
-            expect(response.body).to be_json_eql(users.to_json).at_path("profiles")
-            expect(response.body).to_not include_json(me.to_json).at_path("profiles")
+            usr = users.first 
+            expect(response.body).to be_json_eql(usr.send(attr.to_sym).to_json).at_path("profiles/0/#{attr}")
+            expect(response.body).to_not include_json(me.to_json)
 
           end
         end
