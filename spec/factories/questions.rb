@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :question do
+  factory :question, class: "Question"  do
     title "MyString"
 <<<<<<< HEAD
 	body "MyTextttttt"

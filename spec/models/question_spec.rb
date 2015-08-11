@@ -17,7 +17,7 @@ RSpec.describe Question, type: :model do
   it { should validate_presence_of (:user_id)}
 
 
-  describe "#vote_vount" do
+  describe "#vote_count" do
     let (:question) {create(:question)}
     let!(:vote_up_list) {create_list(:up_vote, 10, votable: question)}
     let!(:vote_down_list) {create_list(:down_vote, 3, votable: question)}

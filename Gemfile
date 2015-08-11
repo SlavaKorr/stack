@@ -45,6 +45,9 @@ group :test, :development do
   gem 'omniauth-twitter', :github => 'arunagw/omniauth-twitter'
   gem 'pry-byebug'
   gem 'doorkeeper'
+  gem 'active_model_serializers'
+  gem 'oj'
+  gem 'oj_mimic_json'
 end
 
 group :test do
