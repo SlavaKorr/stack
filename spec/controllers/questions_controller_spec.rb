@@ -65,32 +65,40 @@ require 'rails_helper'
   describe 'POST #create' do
 
     sign_in_user
+
+
    
+    let(:path) { '/questions' }
+    let(:create_question) { post :create, question: attributes_for(:question) }
+    let(:create_invalid_question) { post :create, question: attributes_for(:invalid_question) } 
+
+    it_behaves_like "Publishable question"
+
     context 'create question with valid attributes can only authorised user' do
 
       it 'create question and save in database' do
-        expect { post :create, question: attributes_for(:question) }.to change(Question, :count).by(1)
+        expect { create_question }.to change(Question, :count).by(1)
       end
 
       it 'redirect to a new question' do
-        post :create, question: attributes_for(:question)
+        create_question
         expect(response).to redirect_to question_path(assigns(:question))
       end
 
 
       it  'compare users_id with new question users_id' do
-        post :create, question: attributes_for(:question)
+      create_question
         expect(assigns(question.user.id)).to eq @user_id
       end
     end
 
     context 'create question with invalid attributes' do
       it 'does not save save the question' do
-        expect { post :create, question: attributes_for(:invalid_question) }.to_not change(Question, :count)
+        expect { create_invalid_question }.to_not change(Question, :count)
       end 
 
       it 'render new template with invalid attributes' do
-        post :create, question: attributes_for(:invalid_question)
+        create_invalid_question
         expect(response).to render_template :new
       end
     end
