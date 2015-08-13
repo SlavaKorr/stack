@@ -9,6 +9,8 @@ RSpec.describe VotesController, type: :controller do
    
   describe "POST #up" do
 
+    it_behaves_like "Unregistered user try vote"  
+
     context "user can vote up and value of vote equal 1" do
 
       before do 
@@ -31,18 +33,18 @@ RSpec.describe VotesController, type: :controller do
       end
     end
 
-    context "unregistered user" do
+  #  context "unregistered user" do
 
-      it "try to vote up" do
-        expect {post :up, question_id: question.id, id: question, 
-                votable: question, format: :json}.to_not change(Vote, :count)
-      end
+  #    it "try to vote up" do
+  #      expect {post :up, question_id: question.id, id: question, 
+  #              votable: question, format: :json}.to_not change(Vote, :count)
+  #    end
     
-      it "send to client from server" do
-          post :up, question_id: question.id, id: question, votable: question, format: :json 
-          expect(response).to have_http_status(401)
-      end
-    end
+  #    it "send to client from server" do
+  #        post :up, question_id: question.id, id: question, votable: question, format: :json 
+  #        expect(response).to have_http_status(401)
+  #    end
+  #  end
 
     context "author can not vote up for your questions or answers" do
         
@@ -60,15 +62,19 @@ RSpec.describe VotesController, type: :controller do
         expect(response).to have_http_status(403)
       end
     end
+
+    def send_vote
+      post :up, question_id: question.id, id: question, votable: question, format: :json
+    end
   end
 
 
   
   describe "POST #down" do
-
+      it_behaves_like "Unregistered user try vote"  
     context "user can vote down and value of vote equal -1" do
 
-      before do 
+      before do
         sign_in(create(:user))
       end
 
@@ -88,19 +94,6 @@ RSpec.describe VotesController, type: :controller do
       end
     end
 
-    context "unregistered user" do
-
-      it "try to vote down" do
-        expect {post :down, question_id: question.id, id: question, 
-                votable: question, format: :json}.to_not change(Vote, :count)
-      end
-    
-      it "send to client from server" do
-          post :down, question_id: question.id, id: question, votable: question, format: :json 
-          expect(response).to have_http_status(401)
-      end
-    end
-
     context "author can not vote down for your questions or answers" do
         
       before do 
@@ -117,50 +110,37 @@ RSpec.describe VotesController, type: :controller do
           expect(response).to have_http_status(403)
       end
     end
+    def send_vote
+      post :down, question_id: question.id, id: question, votable: question, format: :json
+    end
   end
 
 
 
 
   describe "POST #cancel" do
-
+        it_behaves_like "Unregistered user try vote"  
       context "user can vote cancel" do
 
       before do
         sign_in(create(:user))
+        post :down, answer_id: answer.id, id: answer, votable: answer, format: :json
+        post :down, question_id: question.id, id: question, votable: question, format: :json
       end
 
       it "for the question" do 
-
-        post :down, question_id: question.id, id: question, votable: question, format: :json
         expect {post :cancel, question_id: question.id, id: question, 
                 votable: question, format: :json}.to change {question.votes.count}.by(-1) 
       end
 
       it "for the answer" do 
 
-      post :up, answer_id: answer.id, id: answer, votable: answer, format: :json
       expect {post :cancel, answer_id: answer.id, id: answer, 
               votable: answer, format: :json}.to change {answer.votes.count}.by(-1) 
       end
 
       it "send OK to client from server" do
-        post :down, question_id: question.id, id: question, votable: question, format: :json 
         expect(response).to have_http_status(200)
-      end
-    end
-
-    context "unregistered user" do
-
-      it "try to vote cancel" do
-        post :up, answer_id: answer.id, id: answer, votable: answer, format: :json
-        expect {post :cancel, question_id: question.id, id: question, 
-                votable: question, format: :json}.to_not change(Vote, :count)
-      end
-    
-      it "send to client from server" do
-          post :up, question_id: question.id, id: question, votable: question, format: :json 
-          expect(response).to have_http_status(401)
       end
     end
 
@@ -171,16 +151,17 @@ RSpec.describe VotesController, type: :controller do
       end
 
       it "author can not do it" do 
-        post :up, answer_id: answer.id, id: answer, votable: answer, format: :json
         expect {post :cancel, question_id: question.id, id: question, 
                 votable: question, format: :json}.to_not change(Vote, :count)
       end
 
       it "send to client from server" do
-        post :up, answer_id: answer.id, id: answer, votable: answer, format: :json
         post :cancel, question_id: question.id, id: question, votable: question, format: :json 
         expect(response).to have_http_status(403)
       end
+    end
+    def send_vote
+      post :cancel, answer_id: answer.id, id: answer, votable: answer, format: :json
     end
   end
 
