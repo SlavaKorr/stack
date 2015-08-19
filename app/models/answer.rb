@@ -11,6 +11,8 @@ class Answer < ActiveRecord::Base
   validates :body, length: { in: 10..1000 }
   validates :user_id, presence: true
 
+  after_create :notify
+
   default_scope { order('best_answer DESC') }
 
   def best
@@ -19,4 +21,12 @@ class Answer < ActiveRecord::Base
       self.update(best_answer: true)
     end
   end
+
+  private
+
+  def notify
+    AnswerMailer.notify_about_answer(self).deliver_later
+  end
+
+
 end

@@ -2,7 +2,6 @@ class VotesController < ApplicationController
 
   before_action :authenticate_user!
   before_action :load_votable
- # before_action :author_votable
 
   respond_to :json
 
@@ -56,9 +55,5 @@ class VotesController < ApplicationController
   end
 
 
-  #def author_votable
-  #    render nothing: true, status: :forbidden unless @votable.user_id != current_user.id
-  # 
-  
 end
 

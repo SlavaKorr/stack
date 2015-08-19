@@ -28,6 +28,8 @@ class Ability
 
     can :create, Comment
 
+    can :create, Subscription
+
     can :best, Answer do |answer|
       answer.question.user_id == user.id && answer.user_id != user.id
     end

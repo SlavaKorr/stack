@@ -1,0 +1,5 @@
+<% if @subscription.errors.any? %>
+  $('.subscribe').html("You already subscribed");
+<% else %>
+ $('.subscribe').html("You subscribe at answers for this question");
+ <% end %>
