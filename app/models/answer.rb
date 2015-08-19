@@ -25,7 +25,7 @@ class Answer < ActiveRecord::Base
   private
 
   def notify
-    AnswerMailer.notify_about_answer(self).deliver_later
+    NotifyAnswerJob.perform_later(self)
   end
 
 

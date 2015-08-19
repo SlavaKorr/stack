@@ -43,7 +43,7 @@ RSpec.describe Answer, type: :model do
 
 
     it 'after creating questions author should receive answer on email' do
-      expect(AnswerMailer).to receive(:notify_about_answer).with(subject).and_call_original
+      expect(NotifyAnswerJob).to receive(:perform_now).with(subject).and_call_original
       subject.save!
     end
   end
