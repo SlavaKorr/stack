@@ -6,6 +6,7 @@
         :omniauthable, omniauth_providers: [:facebook, :twitter]
   
   has_many :authorizations, dependent: :destroy
+  has_many :subscriptions, dependent: :destroy
   has_many :questions, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :answers, dependent: :destroy
@@ -40,6 +41,14 @@
     authorizations.create(provider: auth.provider, uid: auth.uid)
   end
 
+
+  def self.send_daily_digest
+    find_each do |user|
+    DailyMailer.digest(user).deliver_later
+    end
+  end
+
+ 
 end
 
 

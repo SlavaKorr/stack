@@ -13,7 +13,7 @@ RSpec.describe Answer, type: :model do
   it { should validate_length_of(:body).is_at_least(10).is_at_most(1000) }
 
 
-  describe "method #best_answer" do
+  describe "#best_answer" do
     let (:question) {create(:question)}
     let!(:best_answer) {create(:best_answer, question: question)}
     let!(:answer) {create(:answer, question: question)}
@@ -31,8 +31,21 @@ RSpec.describe Answer, type: :model do
       expect(answer.best_answer).to eq true
       expect(best_answer.best_answer).to eq false
     end
+  end
+
+  describe '#notify' do
+    let(:owner_question) { create(:user) }
+    let(:user) { create(:user) }
+    let!(:question) {create(:question, user: owner_question) }
+    let(:answer) { create(:answer, question: question, user: user)}
+
+    subject { build(:answer, question: question) }
 
 
+    it 'after creating questions author should receive answer on email' do
+      expect(NotifyAnswerJob).to receive(:perform_later).with(subject).and_call_original
+      subject.save!
+    end
   end
 
 end

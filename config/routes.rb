@@ -1,3 +1,6 @@
+#require 'sidekiq/web'
+
+
 Rails.application.routes.draw do
 
 <<<<<<< HEAD
@@ -30,8 +33,7 @@ Rails.application.routes.draw do
   end
 
 
-
-  resources :attachments, only: [:destroy]
+  resources :attachments, only: :destroy
 
   concern :votable do 
     resources :votes, only: [:up, :down, :cancel] do
@@ -43,10 +45,12 @@ Rails.application.routes.draw do
 
     
   resources :questions, concerns: :votable do
-    resources :comments, only: [:create] 
+    resources :comments, only: :create 
+
+    resources :subscriptions, only: :create
 
     resources :answers, concerns: :votable, shallow: true do
-      resources :comments, only: [:create] 
+      resources :comments, only: :create 
       patch :best, on: :member 
     end
 <<<<<<< HEAD
