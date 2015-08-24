@@ -43,6 +43,7 @@
 #
 # Global options
 # --------------
+
     set :ssh_options, {
     keys: %w(/Users/slava/.ssh/id_rsa),
     forward_agent: true,
