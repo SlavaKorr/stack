@@ -48,6 +48,11 @@ p = link_to 'View questions', questions_path
     = f.submit 'Create'
     .comment-errors
 
+- if can?(:create, Subscription)
+  .subscribe
+  p =link_to 'Subscribe', question_subscriptions_path(@question), method: :post, remote: true
+
+
 
 hr
   = form_for [@question, @answer], remote: true do |f|

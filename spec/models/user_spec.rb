@@ -5,6 +5,7 @@ RSpec.describe User do
   it { should have_many :answers }
   it { should have_many :comments }
   it { should have_many :questions }
+  it { should have_many :subscriptions}
   it { should have_many :authorizations }
   it { should validate_presence_of :email }
   it { should validate_presence_of :password }
@@ -84,4 +85,15 @@ RSpec.describe User do
       end
     end
   end
+
+  describe ".send_daily_digest" do
+    let(:users) { create_list(:user, 2) } 
+    it "should send daily digest to all users" do 
+      users.each { |user| expect(DailyMailer).to receive(:digest).with(user).and_call_original }
+      User.send_daily_digest
+    end
+
+  end
+
+
 end
