@@ -1,9 +1,6 @@
 FactoryGirl.define do
   
   factory :answer do
-<<<<<<< HEAD
-	body "MyTextttttt"
-=======
     body "MyTextAnswer"
     question
     user
@@ -32,14 +29,5 @@ FactoryGirl.define do
   factory :new_answer, class: "Answer" do
     body "MyNEWbodyNEW"
     user
->>>>>>> 9cbdb60464406cd6c424b81b269c633daf750abd
-  end
-
-  factory :invalid_answer, class: "Answer" do
-	body "M"
-  end
-
-  factory :new_answer, class: "Answer" do
-	body "MyNEWbodyNEW"
   end
 end

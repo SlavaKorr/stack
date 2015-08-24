@@ -12,16 +12,9 @@
 !/log/.keep
 /tmp
 config/database.yml
-<<<<<<< HEAD
-**/.DS_Store
-=======
 **/.DS_Store
 .idea
 /public/uploads
-<<<<<<< HEAD
->>>>>>> 9cbdb60464406cd6c424b81b269c633daf750abd
-=======
 config/*.sphinx.conf
 db/sphinx
 config/private_pub.yml
->>>>>>> lesson-18
