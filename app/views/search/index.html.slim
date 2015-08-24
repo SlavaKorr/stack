@@ -1,0 +1,7 @@
+ 
+  h2 Search results:
+  - if not @result.nil?
+    ul
+    - @result.each do |obj|
+      li
+        =render :partial => "search/#{obj.class.name.downcase}", locals: {obj: obj}
