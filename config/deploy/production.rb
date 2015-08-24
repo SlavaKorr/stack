@@ -47,5 +47,6 @@
     set :ssh_options, {
     keys: %w(/Users/slava/.ssh/id_rsa),
     forward_agent: true,
-    auth_methods: %w(publickey password)
+    auth_methods: %w(publickey password),
+    port: 4321
   }

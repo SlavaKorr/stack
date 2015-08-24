@@ -2,14 +2,14 @@
 lock '3.4.0'
 
 set :application, 'Stack'
-set :repo_url, 'git@github.com:SlavaKorr/stack.github'
+set :repo_url, 'git@github.com:SlavaKorr/stack.git'
 
 # Default deploy_to directory is /var/www/my_app_name
  set :deploy_to, '/home/deployer/Stack'
  set :deploy_user, 'deployer'
 
 # Default value for :linked_files is []
- set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/secrets.yml', 'config/private_pub.yml')
+ set :linked_files, %w{config/database.yml config/private_pub.yml .env}
 
 # Default value for linked_dirs is []
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system')
