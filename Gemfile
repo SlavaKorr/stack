@@ -56,6 +56,7 @@ group :test, :development do
   gem 'thinking-sphinx'
   gem 'dotenv'
   gem 'dotenv-deployment', require: 'dotenv/deployment'
+  gem 'therubyracer'
 end
 
 group :development do 
