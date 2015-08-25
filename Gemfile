@@ -52,6 +52,8 @@ gem 'private_pub'
   gem 'therubyracer'
   gem 'node'
   gem 'execjs'
+  gem 'celluloid', '0.16.0'
+  gem 'timers', '4.0.0'
 
 
 
