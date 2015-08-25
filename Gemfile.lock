@@ -389,6 +389,7 @@ DEPENDENCIES
   doorkeeper
   dotenv
   dotenv-deployment
+  execjs
   factory_girl_rails
   jbuilder (~> 2.0)
   jquery-rails
