@@ -57,6 +57,7 @@ group :test, :development do
   gem 'dotenv'
   gem 'dotenv-deployment', require: 'dotenv/deployment'
   gem 'therubyracer'
+  gem 'node'
 end
 
 group :development do 
