@@ -394,7 +394,7 @@ DEPENDENCIES
   node
   oj
   oj_mimic_json
-  omniauth (~> 1.2.2)
+  omniauth (>= 1.0.0)
   omniauth-facebook (~> 2.0.1)
   omniauth-twitter (~> 1.2.1)
   pg

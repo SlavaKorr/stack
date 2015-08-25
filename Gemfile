@@ -41,7 +41,7 @@ group :test, :development do
   gem 'capybara-webkit'
   gem 'private_pub'
   gem 'thin'
-  gem 'omniauth', '~> 1.2.2'
+  gem 'omniauth', '>= 1.0.0'
   gem 'omniauth-facebook', '~> 2.0.1'
   gem 'omniauth-twitter', '~> 1.2.1'
   gem 'pry-byebug'
