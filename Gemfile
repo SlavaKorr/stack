@@ -32,14 +32,7 @@ gem 'remotipart'
 gem 'cocoon'
 gem 'responders'
 gem 'cancancan'
-
-
-group :test, :development do 
-	gem 'rspec-rails'
-	gem 'factory_girl_rails'
-  gem 'database_cleaner'
-  gem 'capybara-webkit'
-  gem 'private_pub'
+gem 'private_pub'
   gem 'thin'
   gem 'omniauth', '>= 1.0.0'
   gem 'omniauth-facebook', '~> 2.0.1'
@@ -59,6 +52,15 @@ group :test, :development do
   gem 'therubyracer'
   gem 'node'
   gem 'execjs'
+
+
+
+group :test, :development do 
+	gem 'rspec-rails'
+	gem 'factory_girl_rails'
+  gem 'database_cleaner'
+  gem 'capybara-webkit'
+  
 end
 
 group :development do 
@@ -66,6 +68,7 @@ group :development do
   gem 'capistrano-bundler', require: false
   gem 'capistrano-rails', require: false
   gem 'capistrano-rvm', require: false
+  gem 'capistrano-sidekiq', require: false
 end
 
 group :test do
