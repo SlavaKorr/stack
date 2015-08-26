@@ -54,6 +54,7 @@ gem 'node'
 gem 'execjs'
 gem 'celluloid', '0.16.0'
 gem 'timers', '4.0.0'
+gem 'unicorn'
 
 
 
@@ -61,7 +62,8 @@ group :test, :development do
 	gem 'rspec-rails'
 	gem 'factory_girl_rails'
   gem 'database_cleaner'
-  gem 'capybara-webkit' 
+  gem 'capybara-webkit'
+
 end
 
 group :development do 
@@ -70,6 +72,7 @@ group :development do
   gem 'capistrano-rails', require: false
   gem 'capistrano-rvm', require: false
   gem 'capistrano-sidekiq', require: false
+  gem 'capistrano3-unicorn', require: false
 end
 
 group :test do
