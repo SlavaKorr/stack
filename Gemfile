@@ -21,8 +21,8 @@ gem 'jquery-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
-gem 'sdoc', '~> 0.4.0', group: :doc
 
+gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'slim-rails', '~> 3.0.1'
 gem 'slim', '~> 3.0.6'
 gem 'devise'
@@ -33,27 +33,27 @@ gem 'cocoon'
 gem 'responders'
 gem 'cancancan'
 gem 'private_pub'
-  gem 'thin'
-  gem 'omniauth', '>= 1.0.0'
-  gem 'omniauth-facebook', '~> 2.0.1'
-  gem 'omniauth-twitter', '~> 1.2.1'
-  gem 'pry-byebug'
-  gem 'doorkeeper'
-  gem 'active_model_serializers'
-  gem 'oj'
-  gem 'oj_mimic_json'
-  gem 'sidekiq'
-  gem 'whenever', :require => false
-  gem 'sinatra', '>= 1.3.0', require: nil
-  gem 'mysql2'
-  gem 'thinking-sphinx'
-  gem 'dotenv'
-  gem 'dotenv-deployment', require: 'dotenv/deployment'
-  gem 'therubyracer'
-  gem 'node'
-  gem 'execjs'
-  gem 'celluloid', '0.16.0'
-  gem 'timers', '4.0.0'
+gem 'thin'
+gem 'omniauth', '>= 1.0.0'
+gem 'omniauth-facebook', '~> 2.0.1'
+gem 'omniauth-twitter', '~> 1.2.1'
+gem 'pry-byebug'
+gem 'doorkeeper'
+gem 'active_model_serializers'
+gem 'oj'
+gem 'oj_mimic_json'
+gem 'sidekiq'
+gem 'whenever', :require => false
+gem 'sinatra', '>= 1.3.0', require: nil
+gem 'mysql2'
+gem 'thinking-sphinx'
+gem 'dotenv'
+gem 'dotenv-deployment', require: 'dotenv/deployment'
+gem 'therubyracer'
+gem 'node'
+gem 'execjs'
+gem 'celluloid', '0.16.0'
+gem 'timers', '4.0.0'
 
 
 
@@ -61,8 +61,7 @@ group :test, :development do
 	gem 'rspec-rails'
 	gem 'factory_girl_rails'
   gem 'database_cleaner'
-  gem 'capybara-webkit'
-  
+  gem 'capybara-webkit' 
 end
 
 group :development do 
