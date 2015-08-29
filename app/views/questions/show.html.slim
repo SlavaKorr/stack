@@ -37,7 +37,8 @@ p = link_to 'View questions', questions_path
   .comments
     strong Comments
   - @question.comments.each do |c|
-    = render partial: 'comments/comment', locals: {comment: c}
+    -cache c do 
+      = render partial: 'comments/comment', locals: {comment: c}
   = link_to 'Add comment','', class: 'create-comment-link', data: { commentable_id: @question.id }
   = form_for [ @question, @question.comments.build ], method: "post", remote: true, html: { id: "create-comment-#{@question.id}"} do |f|
     = f.label :comment_body, "Comment"
@@ -63,7 +64,8 @@ hr
     .answer-info
 
 .answers data={question_id: "#{@question.id}"}
-  = render @question.answers
+  -cache @question.answers do
+    = render @question.answers
 
 = subscribe_to "/questions/#{@question.id}/answers"
 = subscribe_to "/questions/#{@question.id}/comments" 
