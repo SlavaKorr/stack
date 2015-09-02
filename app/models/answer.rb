@@ -5,7 +5,7 @@ class Answer < ActiveRecord::Base
   include Votable
 
   belongs_to :user
-  belongs_to :question
+  belongs_to :question, touch: true
 
   validates :question_id, presence: true
   validates :body, length: { in: 10..1000 }

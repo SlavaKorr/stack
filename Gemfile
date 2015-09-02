@@ -55,6 +55,7 @@ gem 'execjs'
 gem 'celluloid', '0.16.0'
 gem 'timers', '4.0.0'
 gem 'unicorn'
+gem 'redis-rails'
 
 
 
